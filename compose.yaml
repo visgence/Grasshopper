@@ -1,0 +1,21 @@
+services:
+  grasshopper-poller:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grasshopper:latest
+    command: poller
+    volumes:
+      - data:/home/grasshopper/data
+  grasshopper-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grasshopper:latest
+    command: webserver
+    volumes:
+      - data:/home/grasshopper/data
+    ports:
+      - "3000:3000"
+volumes:
+  data:
