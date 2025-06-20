@@ -6,16 +6,17 @@ services:
     image: grasshopper:latest
     command: poller
     volumes:
-      - data:/home/grasshopper/data
-  grasshopper-web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: grasshopper:latest
-    command: webserver
-    volumes:
-      - data:/home/grasshopper/data
-    ports:
-      - "3000:3000"
+      - data:/home/grasshopper/grasshopper/data
+      - ./hosts.lst:/home/grasshopper/grasshopper/conf/hosts.lst:z
+  # grasshopper-web:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   image: grasshopper:latest
+  #   command: webserver
+  #   volumes:
+  #     - data:/home/grasshopper/data
+  #   ports:
+  #     - "3000:3000"
 volumes:
   data:
