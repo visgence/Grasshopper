@@ -8,15 +8,20 @@ services:
     volumes:
       - data:/home/grasshopper/grasshopper/data
       - ./hosts.lst:/home/grasshopper/grasshopper/conf/hosts.lst:z
-  # grasshopper-web:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   image: grasshopper:latest
-  #   command: webserver
-  #   volumes:
-  #     - data:/home/grasshopper/data
-  #   ports:
-  #     - "3000:3000"
+    environment:
+          TZ: "America/Denver"
+  grasshopper-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grasshopper:latest
+    command: webserver
+    volumes:
+      - data:/home/grasshopper/grasshopper/data
+    environment:
+          TZ: "America/Denver"
+    ports:
+      - "3000:80"
+      
 volumes:
   data:

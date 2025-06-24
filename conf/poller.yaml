@@ -1,5 +1,6 @@
 jobs:
   - name: grasshopper_polling
-    command: perl /home/grasshopper/grasshopper/cli/grasshopper_control.pl start
+    command: /home/grasshopper/grasshopper/cli/grasshopper_control.pl start
     shell: /bin/bash
-    schedule: "* * * * *"
+    user: grasshopper
+    schedule: "*/5 * * * *"
