@@ -71,7 +71,7 @@ exit() if($pid != 0);
 my $CONTROL_PORT = GrasshopperConfig::get_config_element("DB_SERVER_PORT");
 
 my $sock = new IO::Socket::INET (
-                                LocalHost => 'localhost',
+                                LocalHost => '0.0.0.0',
                                 LocalPort => $CONTROL_PORT,
                                 Proto => 'tcp',
                                 Listen => 9999,

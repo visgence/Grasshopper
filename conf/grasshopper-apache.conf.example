@@ -20,6 +20,7 @@
 <Directory "/var/www/html/grasshopper">
     Options +ExecCGI
     AddHandler cgi-script cgi
+    PassEnv PROCESS
 
     RedirectMatch ^/$ /index.cgi 
     <IfModule mod_deflate.c>

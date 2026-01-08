@@ -15,4 +15,4 @@ RUN usermod -a -G apache grasshopper
 
 ENTRYPOINT ["/home/grasshopper/grasshopper/entrypoint.sh"]
 
-EXPOSE 3000
+EXPOSE 3000 7071
