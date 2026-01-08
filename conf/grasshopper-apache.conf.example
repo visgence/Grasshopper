@@ -5,19 +5,12 @@
 
 #set up virtual hosts
 <VirtualHost *:80>
-    ServerName grasshopper.example.com
-    ServerAlias grasshopper
+    #Uncomment for virutal hostname
+    #ServerName grasshopper.example.com
     ServerAdmin grasshopper-admin@example.com
     DocumentRoot /var/www/html/grasshopper/web
 </VirtualHost>
   
-<VirtualHost *:80>
-    ServerName grasshopper
-    ServerAlias grasshopper
-    ServerAdmin grasshopper-admin@example.com
-    DocumentRoot /var/www/html/grasshopper/web
-</VirtualHost>
-
 #fobid access to .git directories
 <DirectoryMatch .*/.git/.*>
     Deny from all
@@ -27,7 +20,9 @@
 <Directory "/var/www/html/grasshopper">
     Options +ExecCGI
     AddHandler cgi-script cgi
-    
+    PassEnv PROCESS
+
+    RedirectMatch ^/$ /index.cgi 
     <IfModule mod_deflate.c>
           # these are known to be safe with MSIE 6
           AddOutputFilterByType DEFLATE text/html text/plain text/xml

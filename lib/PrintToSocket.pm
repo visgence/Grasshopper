@@ -46,8 +46,15 @@ sub print_to_socket
     #
 
     my ($message,$port,$open,$noexit) = @_;
+    
+    # Check PROCESS environment variable to determine PeerAddr
+    my $peer_addr = 'localhost';  # default
+    if (defined $ENV{'PROCESS'} && $ENV{'PROCESS'} eq 'webserver') {
+        $peer_addr = 'poller';
+    }
+    
     my $sock = new IO::Socket::INET (
-            PeerAddr => 'localhost',
+            PeerAddr => $peer_addr,
             PeerPort => $port,
             Proto => 'tcp',
             );

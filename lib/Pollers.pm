@@ -120,8 +120,9 @@ sub poll_host
     #attempt to use the driver module for the specified system type
     if(!eval("\$poller_status->{'status'} = $driver"."::poll('$hostname','$group');"))
     {
-        $poller_status->{"error"} = "polling driver '$driver' not found";
-        Logger::log("could not use '$driver' for polling");
+        Logger::log("Attempted to call: $driver"."::poll('$hostname','$group')");
+        Logger::log("Eval error on $hostname: $@") if $@;  # Log the actual error
+        $poller_status->{"error"} = "polling driver '$driver' failed: $@";
     }
 
     return $poller_status;
@@ -143,8 +144,9 @@ sub write_rrds
     #Logger::log("\$poller_status .= $driver"."::poll($hostname,$group);");
     if(!eval("\$poller_status .= $driver"."::rrd('$hostname','$group');"))
     {
-        $poller_status->{"error"} = "rrd driver '$driver' no found";
-        Logger::log("could not use '$driver' for rrd writing");
+        Logger::log("Attempted to call: $driver"."::rrd('$hostname','$group')");
+        Logger::log("RRD eval error on $hostname: $@") if $@;  # Log the actual error
+        $poller_status .= "rrd driver '$driver' failed: $@";
     }
 
     return $poller_status;

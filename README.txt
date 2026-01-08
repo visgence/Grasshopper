@@ -103,13 +103,13 @@ instructions, /home/grasshopper and the user `grasshopper` are used.
     sudo su - grasshopper
 
 4. Git Checkout
-    git clone https://github.com/shiftycow/Grasshopper.git grasshopper
+    git clone git@github.com:visgence/Grasshopper.git grasshopper
 
 5. Copy config examples to configs
     cd ~/grasshoper/conf
     cp grasshopper.conf.example grasshopper.conf
     cp grasshopper-apache.conf.example grasshopper-apache.conf
-    cp hosts.lst.example host.lst
+    cp hosts.lst.example hosts.lst
 
 5. Run dependencie test scrip to veriy everything needed is installed
     perl ~/grasshopper/cli/test_scripts/dependency_check.pl
@@ -139,7 +139,7 @@ Section 4 - Configuration
 
 6. make sure /dev/shm/grasshopper_swap exist and is owned by grasshopper TODO: check what happends on reboot 
     mkdir -p /dev/shm/grasshopper_swap
-    chown grasshopper:grasshoper /dev/shm/grasshopper_swap
+    chown grasshopper:grasshopper /dev/shm/grasshopper_swap
 
 7. modify grasshoper/conf/grasshoper.conf, Most important add SNMP community, swap location above can be moved
 

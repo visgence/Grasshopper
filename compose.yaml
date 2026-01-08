@@ -1,0 +1,27 @@
+services:
+  grasshopper-poller:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grasshopper:latest
+    command: poller
+    volumes:
+      - data:/home/grasshopper/grasshopper/data
+      - ./hosts.lst:/home/grasshopper/grasshopper/conf/hosts.lst:z
+    environment:
+          TZ: "America/Denver"
+  grasshopper-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: grasshopper:latest
+    command: webserver
+    volumes:
+      - data:/home/grasshopper/grasshopper/data
+    environment:
+          TZ: "America/Denver"
+    ports:
+      - "3000:80"
+      
+volumes:
+  data:
